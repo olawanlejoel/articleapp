@@ -130,8 +130,8 @@ jQuery("#articlesBody").on("click", ".appreciateBtn", async function(event){
 
   await contractCall('appreciateArticle', [index, value], value);
 
-  // const foundIndex = articleDetails.findIndex(article => article.index == event.target.id);
-  // articleDetails[foundIndex].Amount += parseInt(value, 10);
+  const foundIndex = articleDetails.findIndex(article => article.index == event.target.id);
+  articleDetails[foundIndex].Amount += parseInt(value, 10);
 
   renderArticles();
    $("#loader").hide();

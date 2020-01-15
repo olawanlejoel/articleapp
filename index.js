@@ -109,10 +109,9 @@ window.addEventListener('load', async () => {
       article          : article.article,
       caption          : article.caption,
       author           : article.publisherAddress,
-      appreciatedAmount:article.appreciatedAmount,
-      index: i,
-      date : new Date(article.articleDate),
       Amount: article.appreciatedAmount,
+      index: i,
+      date : new Date(article.articleDate), 
     })
   }
 

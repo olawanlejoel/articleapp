@@ -42,7 +42,7 @@ payable contract ArticleAmount =
     put(state{ articles = updatedArticles })
 
 `;
-const contractAddress ='ct_KXztbTbQCJxcNqfetvshGDQvfH7stFwGSc3n5XsdcnAhNcBwz';
+const contractAddress ='ct_GXYebjuYk1ZV9a3kQ3uEBcB4pyffBaDLDn6bWK5aTB8K4kNCf';
 var client = null;
 var articleDetails = [];
 var totalArticles = 0;
@@ -76,20 +76,20 @@ function renderArticles() {
 }
 
 
-async function callStatic(func, args) {
-  const contract = await client.getContractInstance(contractSource, {publisherAddress});
-  const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
-  const decodedGet = await calledGet.decode().catch(e => console.error(e));
+// async function callStatic(func, args) {
+//   const contract = await client.getContractInstance(contractSource, {publisherAddress});
+//   const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
+//   const decodedGet = await calledGet.decode().catch(e => console.error(e));
 
-  return decodedGet;
-}
+//   return decodedGet;
+// }
 
-async function contractCall(func, args, value) {
-  const contract = await client.getContractInstance(contractSource, {publisherAddress});
-  const calledSet = await contract.call(func, args, {amount: value}).catch(e => console.error(e));
+// async function contractCall(func, args, value) {
+//   const contract = await client.getContractInstance(contractSource, {publisherAddress});
+//   const calledSet = await contract.call(func, args, {amount: value}).catch(e => console.error(e));
 
-  return calledSet;
-}
+//   return calledSet;
+// }
 
 window.addEventListener('load', async () => {
   $("#loader").show();
@@ -109,9 +109,10 @@ window.addEventListener('load', async () => {
       article          : article.article,
       caption          : article.caption,
       author           : article.publisherAddress,
-      Amount: article.appreciatedAmount,
+      appreciatedAmount:article.appreciatedAmount,
       index: i,
-      date : new Date(article.articleDate), 
+      date : new Date(article.articleDate),
+      Amount: article.appreciatedAmount,
     })
   }
 
@@ -130,8 +131,8 @@ jQuery("#articlesBody").on("click", ".appreciateBtn", async function(event){
 
   await contractCall('appreciateArticle', [index, value], value);
 
-  const foundIndex = articleDetails.findIndex(article => article.index == event.target.id);
-  articleDetails[foundIndex].Amount += parseInt(value, 10);
+  // const foundIndex = articleDetails.findIndex(article => article.index == event.target.id);
+  // articleDetails[foundIndex].Amount += parseInt(value, 10);
 
   renderArticles();
    $("#loader").hide();

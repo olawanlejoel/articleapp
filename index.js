@@ -127,7 +127,7 @@ jQuery("#articlesBody").on("click", ".appreciateBtn", async function(event){
     index = event.target.id;
    
 
-    console.log(value)
+    //console.log(value)
 
   await contractCall('appreciateArticle', [index, value], value);
 

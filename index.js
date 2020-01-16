@@ -105,7 +105,7 @@ window.addEventListener('load', async () => {
     articleDetails.push({
       publisherAddress: article.namee,
       title            : article.title,
-      //name             : article.name,
+      name             : article.name,
       article          : article.article,
       caption          : article.caption,
       author           : article.publisherAddress,

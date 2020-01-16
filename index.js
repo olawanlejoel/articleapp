@@ -109,7 +109,7 @@ window.addEventListener('load', async () => {
       article          : article.article,
       caption          : article.caption,
       author           : article.publisherAddress,
-      appreciatedAmount:article.appreciatedAmount,
+      //appreciatedAmount:article.appreciatedAmount,
       index: i,
       date : new Date(article.articleDate),
       Amount: article.appreciatedAmount,
@@ -150,10 +150,10 @@ $('#publishBtn').click(async function(){
       newDate = await callStatic('fetchArticle', [id])
 
   articleDetails.push({
-    Articletitle: title,
-    Author: name,
-    Article: article,
-    Caption: caption,
+    title: title,
+    author: name,
+    article: article,
+    caption: caption,
     index: articleDetails.length+1,
     date : new Date(newDate.articleDate),
     Amount: 0,

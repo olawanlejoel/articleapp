@@ -152,7 +152,7 @@ $('#publishBtn').click(async function(){
   articleDetails.push({
     title: title,
     author: author,
-    Article: article,
+    article: article,
     caption: caption,
     index: articleDetails.length+1,
     date : new Date(newDate.articleDate),

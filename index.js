@@ -1,30 +1,25 @@
 const contractSource = `
 payable contract ArticleAmount =
-
   record article = 
     { publisherAddress : address,
       title            : string,
-      name             : string,
       article          : string,
       caption          : string,
       appreciatedAmount: int,
       articleDate : int }
-
   record state = { 
     articles : map(int, article),
     totalArticles : int }
-
   entrypoint init() = 
     { articles = {},
         totalArticles = 0 }
-
   entrypoint fetchArticle(index : int) : article =
     switch(Map.lookup(index, state.articles))
       None   => abort("No Article was registered with this index number.")
       Some(x)=> x
     
-  stateful entrypoint publishArticle(title' : string, name' : string, article' : string, caption' : string) =
-    let article = { publisherAddress = Call.caller, title = title', name = name', article = article', caption = caption', appreciatedAmount = 0, articleDate = Chain.timestamp}
+  stateful entrypoint publishArticle(title' : string, article' : string, caption' : string) =
+    let article = { publisherAddress = Call.caller, title = title', article = article', caption = caption', appreciatedAmount = 0, articleDate = Chain.timestamp}
     let index = fetchtotalArticles() + 1
     put(state { articles[index] = article, totalArticles = index})
     
@@ -34,7 +29,6 @@ payable contract ArticleAmount =
   payable stateful entrypoint appreciateArticle(index : int, price : int) =
     
     let article = fetchArticle(index)
-
     require(article.publisherAddress != Call.caller, "You cannot appreciate your own article")
     Chain.spend(article.publisherAddress, price)
     let updatedappreciatedAmount = article.appreciatedAmount + price
@@ -42,7 +36,7 @@ payable contract ArticleAmount =
     put(state{ articles = updatedArticles })
 
 `;
-const contractAddress ='ct_GXYebjuYk1ZV9a3kQ3uEBcB4pyffBaDLDn6bWK5aTB8K4kNCf';
+const contractAddress ='ct_MVbvp3FgJkgKj2YfpvyGuQukPP5SoLAHiEUs8nZCUr8FQCxDY';
 var client = null;
 var articleDetails = [];
 var totalArticles = 0;
@@ -105,7 +99,6 @@ window.addEventListener('load', async () => {
     articleDetails.push({
       publisherAddress: article.namee,
       title            : article.title,
-      name             : article.name,
       article          : article.article,
       caption          : article.caption,
       author           : article.publisherAddress,
@@ -138,17 +131,15 @@ jQuery("#articlesBody").on("click", ".appreciateBtn", async function(event){
 $('#publishBtn').click(async function(){
   $("#loader").show();
   const title = ($('#title').val()),
-  	  name = ($('#name').val()),
   	  article = ($('#info').val()),
       caption = ($('#caption').val());
 
-      await contractCall('publishArticle', [title, name, article, caption], 0);
+      await contractCall('publishArticle', [title, article, caption], 0);
       const id = articleDetails.length +1
       newDate = await callStatic('fetchArticle', [id])
 
   articleDetails.push({
     title: title,
-    name: name,
     //author: author,
     article: article,
     caption: caption,

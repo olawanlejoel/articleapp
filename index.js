@@ -148,6 +148,7 @@ $('#publishBtn').click(async function(){
 
   articleDetails.push({
     title: title,
+    Author: name,
     author: author,
     article: article,
     caption: caption,

@@ -101,8 +101,6 @@ window.addEventListener('load', async () => {
       title            : article.title,
       article          : article.article,
       caption          : article.caption,
-      author           : article.publisherAddress,
-      //appreciatedAmount:article.appreciatedAmount,
       index: i,
       date : new Date(article.articleDate),
       Amount: article.appreciatedAmount,
@@ -140,7 +138,6 @@ $('#publishBtn').click(async function(){
 
   articleDetails.push({
     title: title,
-    publisherAddress: author,
     article: article,
     caption: caption,
     index: articleDetails.length+1,

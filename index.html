@@ -38,9 +38,7 @@
                 <div class="col">
                   <input type="text" id="title" class="form-control" placeholder="title">
                 </div>
-                <div class="col">
-                  <input type="text" id="name" class="form-control" placeholder="Your name">
-                </div>
+                
               </div><br>
               <div class="form-group">
                   <textarea type="text" class="form-control" placeholder="Your text" id="info" rows="5"></textarea>
@@ -62,7 +60,7 @@
               <div id="articledetails">
             <div class="card">
               <h5 class="card-title">{{title}}</h5>
-              <small>Uploaded by <STRONG>{{author}}</STRONG></small><br>
+              
               <hr>
               <div>
                 <p>
@@ -75,7 +73,7 @@
               <hr>
               <div class="card-body">
                 <br>
-                <h6 class="card-subtitle mb-2 text-muted"><small style="color: #311B58">Appereciated amount:  </small>{{date}} ættos</h6>
+                <h6 class="card-subtitle mb-2 text-muted"><small style="color: #311B58">Uploaded Date:  </small>{{date}} ættos</h6>
                 <h6 class="card-subtitle mb-2 text-muted"><small style="color: #311B58">Appereciated amount:  </small>{{Amount}} ættos</h6>
                 <input type="number" class="form-control" placeholder="Amount" id={{index}}>
                 <button class="btn appreciateBtn btn-block" id={{index}}>APPRECIATE</button>

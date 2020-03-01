@@ -62,7 +62,7 @@ async function contractCall(func, args, value) {
 
 function renderArticles() {
   articleDetails = articleDetails.sort(function(x,y){return y.Amount-x.Amount})
-  var article = $('#article').html();
+  let article = $('#article').html();
   Mustache.parse(article);
   var rendered = Mustache.render(article, {articleDetails});
   $('#articlesBody').html(rendered);
